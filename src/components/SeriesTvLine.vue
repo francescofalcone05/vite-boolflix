@@ -1,6 +1,4 @@
 <script>
-import FilmLine from './FilmLine.vue';
-import SeriesTvLine from './SeriesTvLine.vue';
 import store from '../data/store.js';
 import axios from 'axios';
 
@@ -8,8 +6,6 @@ import axios from 'axios';
 
 export default {
     components: {
-        FilmLine,
-        SeriesTvLine,
     },
 
     data() {
@@ -35,10 +31,6 @@ export default {
 </script>
 
 <template>
-
-    <FilmLine />
-
-    <SeriesTvLine />
 
 </template>
 
