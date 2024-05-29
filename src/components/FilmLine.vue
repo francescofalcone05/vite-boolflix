@@ -36,7 +36,7 @@ export default {
     <div class="contenitore">
 
         <div v-for="film in store.filmList" class="card">
-
+            <img :src="store.prefissoImg + film.poster_path" alt="">
             <p><span>Titolo:</span> {{ film.title }}</p>
             <p><span>Titolo originale:</span> {{ film.original_title }}</p>
             <p><span>Lingua:</span> {{ film.original_language }}</p>
@@ -53,7 +53,6 @@ export default {
 .contenitore {
     width: 80%;
     margin: 2rem auto;
-    border: dashed red 1px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -61,8 +60,11 @@ export default {
 .card {
     width: calc(100% / 6);
     min-height: 20rem;
-    border: dashed red 1px;
     padding: 1rem;
+}
+
+img {
+    width: 90%;
 }
 
 p {

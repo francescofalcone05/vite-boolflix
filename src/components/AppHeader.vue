@@ -18,7 +18,7 @@ export default {
     getFilmList() {
       const options = {
         method: 'GET',
-        url: 'https://api.themoviedb.org/3/movie/popular',
+        url: 'https://api.themoviedb.org/3/search/movie',
         params: { query: this.store.inputValue, language: 'en-US', page: '1' },
         headers: {
           accept: 'application/json',
