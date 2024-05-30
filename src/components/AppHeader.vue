@@ -34,9 +34,7 @@ export default {
           this.store.filmList = response.data.results
           //console.log(this.store.filmList);
           for (let index = 0; index < this.store.filmList.length; index++) {
-            const element = this.store.filmList[index];
-            element.push(this.cardShow)
-            console.log(element);
+            this.store.filmList[index].cardShow = this.cardShow
             console.log(this.store.filmList);
           }
         })

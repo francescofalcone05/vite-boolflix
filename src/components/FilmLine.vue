@@ -35,11 +35,14 @@ export default {
 
     <div class="contenitore">
 
-        <div v-for="film, i in store.filmList" class="card">
+        <div v-show="film.poster_path != null && film.backdrop_path != null" v-for="film, i in store.filmList"
+            @mouseover="film.cardShow = true" @mouseleave="film.cardShow = false" class="card">
 
-            <img @mouseover="" @mouseleave="" :src="store.prefissoImg + film.poster_path" alt="">
-            <div class="details">
-                <p><span class="red">Titolo:</span> {{ film.title }}</p>
+            <img v-if="film.cardShow == false" :src="store.prefissoImg + film.poster_path" alt="">
+            <!-- <img v-if="film.cardShow == false"
+                :src="store.prefissoImg + (film.poster_path == null ? film.backdrop_path : film.poster_path_)" alt=""> -->
+            <div v-if="film.cardShow == true" class="details">
+                <h2>{{ film.title }}</h2>
                 <p v-if="film.original_title != film.title"><span class="red">Titolo originale:</span> {{
                     film.original_title }}</p>
                 <div v-if="film.original_language == 'it'"><span class="red">Lingua:</span><img
@@ -54,13 +57,24 @@ export default {
                 <div v-if="film.original_language == 'es'"><span class="red">Lingua:</span><img
                         src="../assets/img/es.svg" alt="">
                 </div>
+                <div v-if="film.original_language == 'ja'"><span class="red">Lingua:</span><img
+                        src="../assets/img/ja.svg" alt="">
+                </div>
+                <div v-if="film.original_language == 'de'"><span class="red">Lingua:</span><img
+                        src="../assets/img/de.svg" alt="">
+                </div>
+                <div v-if="film.original_language == 'pl'"><span class="red">Lingua:</span><img
+                        src="../assets/img/pl.svg" alt="">
+                </div>
+                <div v-if="film.original_language == 'tl'"><span class="red">Lingua:</span><img
+                        src="../assets/img/tl.svg" alt="">
+                </div>
                 <p><span class="red">Voto:</span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><i class="fa-solid fa-star"></i></span>
-                    {{ film.vote_average }}
+                    <span v-if="film.vote_average <= 2"><i class="fa-solid fa-star"></i></span>
+                    <span v-if="film.vote_average <= 4"><i class="fa-solid fa-star"></i></span>
+                    <span v-if="film.vote_average <= 6"><i class="fa-solid fa-star"></i></span>
+                    <span v-if="film.vote_average <= 8"><i class="fa-solid fa-star"></i></span>
+                    <span v-if="film.vote_average <= 10"><i class="fa-solid fa-star"></i></span>
                 </p>
             </div>
 
@@ -79,6 +93,7 @@ export default {
 }
 
 .card {
+    text-align: center;
     width: calc(100% / 6);
     min-height: 20rem;
     padding: 1rem;
@@ -94,18 +109,26 @@ export default {
 }
 
 .details>div {
-    padding: 0.5rem 0;
+    padding-bottom: 0.5rem;
 }
 
 p {
     margin-bottom: 0.5rem;
-    color: gold;
+    color: white;
 }
 
-p>span {}
+h2 {
+    margin-bottom: 1rem;
+    color: white;
+}
+
 
 .red {
     color: red;
     margin-right: 0.1rem;
+}
+
+.fa-solid {
+    color: gold;
 }
 </style>
