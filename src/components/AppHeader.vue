@@ -11,11 +11,13 @@ export default {
   data() {
     return {
       store,
+      cardShow: false,
 
     }
   },
   methods: {
     getFilmList() {
+
       const options = {
         method: 'GET',
         url: 'https://api.themoviedb.org/3/search/movie',
@@ -30,13 +32,29 @@ export default {
         .request(options)
         .then((response) => {
           this.store.filmList = response.data.results
-          console.log(this.store.filmList);
-
+          //console.log(this.store.filmList);
+          for (let index = 0; index < this.store.filmList.length; index++) {
+            const element = this.store.filmList[index];
+            element.push(this.cardShow)
+            console.log(element);
+            console.log(this.store.filmList);
+          }
         })
         .catch(function (error) {
           console.error(error);
         });
-    }
+
+    },
+    //funzione per mostrare o nascondere la
+    // addBol() {
+    //   for (let index = 0; index < this.store.filmList.length; index++) {
+    //     const element = this.store.filmList[index];
+    //     element.push(cardShow = false)
+    //     console.log(element);
+    //     console.log(this.store.filmList);
+
+    //   }
+    // },
 
   },
   created() {
