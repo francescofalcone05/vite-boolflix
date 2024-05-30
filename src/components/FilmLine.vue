@@ -1,9 +1,6 @@
 <script>
 
 import store from '../data/store.js';
-import axios from 'axios';
-
-
 
 export default {
     components: {
@@ -32,7 +29,9 @@ export default {
 </script>
 
 <template>
-
+    <div class="founded-film">
+        <h2>Film</h2>
+    </div>
     <div class="contenitore">
 
         <div v-show="film.poster_path != null && film.backdrop_path != null" v-for="film, i in store.filmList"
@@ -69,7 +68,7 @@ export default {
                 <div v-if="film.original_language == 'tl'"><span class="red">Lingua:</span><img
                         src="../assets/img/tl.svg" alt="">
                 </div>
-                <p><span class="red">Voto:</span>
+                <p>
                     <span v-if="film.vote_average <= 2"><i class="fa-solid fa-star"></i></span>
                     <span v-if="film.vote_average <= 4"><i class="fa-solid fa-star"></i></span>
                     <span v-if="film.vote_average <= 6"><i class="fa-solid fa-star"></i></span>
@@ -85,6 +84,19 @@ export default {
 </template>
 
 <style scoped>
+.founded-film {
+    width: 80%;
+    background-color: red;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.founded-film>h2 {
+    color: white;
+    padding: 0.5rem;
+}
+
+
 .contenitore {
     width: 80%;
     margin: 2rem auto;
@@ -117,7 +129,7 @@ p {
     color: white;
 }
 
-h2 {
+.details>h2 {
     margin-bottom: 1rem;
     color: white;
 }
