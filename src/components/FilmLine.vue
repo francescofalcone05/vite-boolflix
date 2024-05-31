@@ -2,6 +2,7 @@
 
 import store from '../data/store.js';
 
+
 export default {
     components: {
     },
@@ -29,7 +30,7 @@ export default {
 </script>
 
 <template>
-    <div class="founded-film">
+    <div v-if="store.filmList != ''" class="founded-film">
         <h2>Film</h2>
     </div>
     <div class="contenitore">
@@ -37,9 +38,8 @@ export default {
         <div v-show="film.poster_path != null && film.backdrop_path != null" v-for="film, i in store.filmList"
             @mouseover="film.cardShow = true" @mouseleave="film.cardShow = false" class="card">
 
-            <img v-if="film.cardShow == false" :src="store.prefissoImg + film.poster_path" alt="">
-            <!-- <img v-if="film.cardShow == false"
-                :src="store.prefissoImg + (film.poster_path == null ? film.backdrop_path : film.poster_path_)" alt=""> -->
+            <img v-if="film.cardShow == false"
+                :src="store.prefissoImg + (film.poster_path == null ? film.backdrop_path : film.poster_path)" alt="">
             <div v-if="film.cardShow == true" class="details">
                 <h2>{{ film.title }}</h2>
                 <p v-if="film.original_title != film.title"><span class="red">Titolo originale:</span> {{
