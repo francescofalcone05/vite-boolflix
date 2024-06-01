@@ -1,6 +1,6 @@
 <script>
-import store from '../data/store.js';
 
+import store from '../data/store.js';
 
 
 export default {
@@ -10,7 +10,8 @@ export default {
     data() {
         return {
             store,
-
+            svg: '.svg',
+            imgAsset: '../assets/img/'
         }
     },
     methods: {
@@ -30,21 +31,24 @@ export default {
 </script>
 
 <template>
-    <div v-if="store.serieTvList != ''" class="founded-film">
-        <h2>Serie TV</h2>
+    <div class="founded-serie">
+        <h2>Most Popolar Series</h2>
     </div>
     <div class="contenitore">
 
-        <div v-show="serie.poster_path != null && serie.backdrop_path != null" v-for="serie, i in store.serieTvList"
-            @mouseover="serie.cardShow = true" @mouseleave="serie.cardShow = false" class="card">
+        <div v-show="serie.poster_path != null && serie.backdrop_path != null"
+            v-for="serie, i in store.popolarSerieList" @mouseover="serie.cardShow = true"
+            @mouseleave="serie.cardShow = false" class="card">
 
-            <img v-if="serie.cardShow == false" :src="store.prefissoImg + serie.poster_path" alt="">
-            <!-- <img v-if="serie.cardShow == false"
-                :src="store.prefissoImg + (serie.poster_path == null ? serie.backdrop_path : serie.poster_path_)" alt=""> -->
+            <img v-if="serie.cardShow == false"
+                :src="store.prefissoImg + (serie.poster_path == null ? serie.backdrop_path : serie.poster_path)" alt="">
             <div v-if="serie.cardShow == true" class="details">
                 <h2>{{ serie.name }}</h2>
                 <p v-if="serie.original_name != serie.name"><span class="red">Titolo originale:</span> {{
                     serie.original_name }}</p>
+                <!-- <div><span class="red">Lingua:</span><img :src="imgAsset + serie.original_language + svg" alt="">
+                    {{ imgAsset }}{{ serie.original_language }}{{ svg }}
+                </div> -->
                 <div v-if="serie.original_language == 'it'"><span class="red">Lingua:</span><img
                         src="../assets/img/it.svg" alt="">
                 </div>
@@ -85,14 +89,14 @@ export default {
 </template>
 
 <style scoped>
-.founded-film {
+.founded-serie {
     width: 80%;
     background-color: red;
     margin: 1rem auto;
     text-align: center;
 }
 
-.founded-film>h2 {
+.founded-serie>h2 {
     color: white;
     padding: 0.5rem;
 }

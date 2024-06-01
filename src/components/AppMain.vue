@@ -1,6 +1,8 @@
 <script>
 import FilmLine from './FilmLine.vue';
 import SeriesTvLine from './SeriesTvLine.vue';
+import PopolarTranding from './PopolarTranding.vue';
+import PopolarSeriesTv from './PopolarSeriesTv.vue';
 import store from '../data/store.js';
 import axios from 'axios';
 
@@ -10,6 +12,8 @@ export default {
     components: {
         FilmLine,
         SeriesTvLine,
+        PopolarTranding,
+        PopolarSeriesTv,
     },
 
     data() {
@@ -36,9 +40,13 @@ export default {
 
 <template>
 
-    <FilmLine />
+    <PopolarTranding v-if="store.popolar == false" />
 
-    <SeriesTvLine />
+    <PopolarSeriesTv v-if="store.popolar == false" />
+
+    <FilmLine v-if="store.popolar == true" />
+
+    <SeriesTvLine v-if="store.popolar == true" />
 
 </template>
 

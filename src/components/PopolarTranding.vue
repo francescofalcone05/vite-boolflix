@@ -31,12 +31,12 @@ export default {
 </script>
 
 <template>
-    <div v-if="store.filmList != ''" class="founded-film">
-        <h2>Film</h2>
+    <div class="founded-film">
+        <h2>Most Popolar Films</h2>
     </div>
     <div class="contenitore">
 
-        <div v-show="film.poster_path != null && film.backdrop_path != null" v-for="film, i in store.filmList"
+        <div v-show="film.poster_path != null && film.backdrop_path != null" v-for="film, i in store.popolarFilmList"
             @mouseover="film.cardShow = true" @mouseleave="film.cardShow = false" class="card">
 
             <img v-if="film.cardShow == false"
