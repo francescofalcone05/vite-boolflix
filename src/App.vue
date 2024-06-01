@@ -39,7 +39,7 @@ export default {
         for (let index = 0; index < this.store.popolarFilmList.length; index++) {
           this.store.popolarFilmList[index].cardShow = this.cardShow
         }
-        console.log(this.store.popolarList);
+        console.log(this.store.popolarFilmList);
       })
       .catch(function (error) {
         console.error(error);
