@@ -14,7 +14,10 @@ export default {
         }
     },
     methods: {
-
+        getFlegImg(path) {
+            let risultato = new URL(`../assets/img/${path}.svg`, import.meta.url);
+            return risultato.href;
+        }
     },
     created() {
 
@@ -45,30 +48,7 @@ export default {
                 <h2>{{ serie.name }}</h2>
                 <p v-if="serie.original_name != serie.name"><span class="red">Titolo originale:</span> {{
                     serie.original_name }}</p>
-                <div v-if="serie.original_language == 'it'"><span class="red">Lingua:</span><img
-                        src="../assets/img/it.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'en'"><span class="red">Lingua:</span><img
-                        src="../assets/img/en.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'fr'"><span class="red">Lingua:</span><img
-                        src="../assets/img/fr.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'es'"><span class="red">Lingua:</span><img
-                        src="../assets/img/es.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'ja'"><span class="red">Lingua:</span><img
-                        src="../assets/img/ja.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'de'"><span class="red">Lingua:</span><img
-                        src="../assets/img/de.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'pl'"><span class="red">Lingua:</span><img
-                        src="../assets/img/pl.svg" alt="">
-                </div>
-                <div v-if="serie.original_language == 'tl'"><span class="red">Lingua:</span><img
-                        src="../assets/img/tl.svg" alt="">
-                </div>
+                <div><span class="red">Lingua:</span><img :src="getFlegImg(serie.original_language)" alt=""></div>
                 <p>
                     <span><i :class="(serie.vote_average >= 2) ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i></span>
                     <span><i :class="(serie.vote_average >= 4) ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i></span>

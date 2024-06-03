@@ -10,12 +10,13 @@ export default {
     data() {
         return {
             store,
-            svg: '.svg',
-            imgAsset: '../assets/img/'
         }
     },
     methods: {
-
+        getFlegImg(path) {
+            let risultato = new URL(`../assets/img/${path}.svg`, import.meta.url);
+            return risultato.href;
+        }
     },
     created() {
 
@@ -45,33 +46,7 @@ export default {
                 <h2>{{ film.title }}</h2>
                 <p v-if="film.original_title != film.title"><span class="red">Titolo originale:</span> {{
                     film.original_title }}</p>
-                <!-- <div><span class="red">Lingua:</span><img :src="imgAsset + film.original_language + svg" alt="">
-                    {{ imgAsset }}{{ film.original_language }}{{ svg }}
-                </div> -->
-                <div v-if="film.original_language == 'it'"><span class="red">Lingua:</span><img
-                        src="../assets/img/it.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'en'"><span class="red">Lingua:</span><img
-                        src="../assets/img/en.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'fr'"><span class="red">Lingua:</span><img
-                        src="../assets/img/fr.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'es'"><span class="red">Lingua:</span><img
-                        src="../assets/img/es.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'ja'"><span class="red">Lingua:</span><img
-                        src="../assets/img/ja.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'de'"><span class="red">Lingua:</span><img
-                        src="../assets/img/de.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'pl'"><span class="red">Lingua:</span><img
-                        src="../assets/img/pl.svg" alt="">
-                </div>
-                <div v-if="film.original_language == 'tl'"><span class="red">Lingua:</span><img
-                        src="../assets/img/tl.svg" alt="">
-                </div>
+                <div><span class="red">Lingua:</span><img :src="getFlegImg(film.original_language)" alt=""></div>
                 <p>
                     <span><i :class="(film.vote_average >= 2) ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i></span>
                     <span><i :class="(film.vote_average >= 4) ? 'fa-solid fa-star' : 'fa-regular fa-star'"></i></span>
